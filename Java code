@@ -1,0 +1,37 @@
+// A Java program to implement binary search on a sorted array
+public class BinarySearch {
+  // A recursive method that returns the index of the target element in the array, or -1 if not found
+  public static int binarySearch(int[] array, int low, int high, int target) {
+    // Base case: the array is empty or the target is not in the range
+    if (low > high) {
+      return -1;
+    }
+    // Find the middle element of the array
+    int mid = (low + high) / 2;
+    // Compare the target with the middle element
+    if (target == array[mid]) {
+      // The target is found, return its index
+      return mid;
+    } else if (target < array[mid]) {
+      // The target is smaller than the middle element, search in the left half of the array
+      return binarySearch(array, low, mid - 1, target);
+    } else {
+      // The target is larger than the middle element, search in the right half of the array
+      return binarySearch(array, mid + 1, high, target);
+    }
+  }
+
+  public static void main(String[] args) {
+    // A sample sorted array of integers
+    int[] array = {2, 4, 6, 8, 10, 12, 14, 16};
+    // A sample target element to search for
+    int target = 10;
+    // Call the binary search method and print the result
+    int result = binarySearch(array, 0, array.length - 1, target);
+    if (result == -1) {
+      System.out.println("The element " + target + " is not in the array.");
+    } else {
+      System.out.println("The element " + target + " is at index " + result + " in the array.");
+    }
+  }
+}
